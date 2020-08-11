@@ -85,10 +85,13 @@ errorDialog(_) {
       });
 }
 
-editDialog(BuildContext _, String id, String classLevel, String majors, String classCode) {
+editDialog(BuildContext _, String id, String classLevel, String majors,
+    String classCode) {
   final classLevelController = TextEditingController(text: classLevel);
   final majorsController = TextEditingController(text: majors);
   final classCodeController = TextEditingController(text: classCode);
+  // ignore: close_sinks
+  final bloc = BlocProvider.of<ClassdataBloc>(_);
   showDialog(
       context: _,
       builder: (_) {
@@ -126,7 +129,17 @@ editDialog(BuildContext _, String id, String classLevel, String majors, String c
                   Get.back();
                 }),
             CupertinoDialogAction(
-                isDefaultAction: true, child: Text("Simpan"), onPressed: () {})
+                isDefaultAction: true,
+                child: Text("Simpan"),
+                onPressed: () {
+                  Get.back();
+                  bloc.add(ClassdataUpdateBlocEvent(
+                    id,
+                    classLevelController.text,
+                    majorsController.text,
+                    classCodeController.text,
+                  ));
+                })
           ],
         );
       });
