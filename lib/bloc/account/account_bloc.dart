@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:spp/models/account.dart';
+import 'package:spp_app/models/account.dart';
 
 part 'account_event.dart';
 part 'account_state.dart';

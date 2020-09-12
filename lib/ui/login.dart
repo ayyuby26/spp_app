@@ -2,11 +2,11 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:spp/bloc/account/account_bloc.dart';
-import 'package:spp/ui/dashboard.dart';
-import 'package:spp/utils/show_dialog.dart';
-import 'package:spp/utils/snack_bar.dart';
-import 'package:spp/utils/text_field.dart';
+import 'package:spp_app/bloc/account/account_bloc.dart';
+import 'package:spp_app/ui/dashboard.dart';
+import 'package:spp_app/utils/show_dialog.dart';
+import 'package:spp_app/utils/snack_bar.dart';
+import 'package:spp_app/utils/text_field.dart';
 
 class Login extends StatefulWidget {
   @override

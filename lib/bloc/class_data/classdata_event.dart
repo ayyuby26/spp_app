@@ -9,22 +9,8 @@ class ClassdataBlocEvent extends ClassdataEvent {}
 
 class ClassdataReset extends ClassdataEvent {}
 
-/*
 
-
-
-
-
-
-
-
- */
-
-abstract class ClassdataDeleteEvent extends ClassdataEvent {
-  @override
-  List<Object> get props => [];
-}
-
+/// CLASS DATA DELETE
 class ClassdataDeleteBlocEvent extends ClassdataEvent {
   final String id;
 
@@ -33,11 +19,6 @@ class ClassdataDeleteBlocEvent extends ClassdataEvent {
   @override
   List<Object> get props => [id];
 }
-
-class ClassdataDeleteReset extends ClassdataEvent {}
-
-
-
 
 /// CLASS DATA UPDATE
 class ClassdataUpdateBlocEvent extends ClassdataEvent {
@@ -48,3 +29,12 @@ class ClassdataUpdateBlocEvent extends ClassdataEvent {
   @override
   List<Object> get props => [_id, _classLevel, _majors, _classCode];
 }
+
+// CLASS DATA ADD
+class ClassdataAddBlocEvent extends ClassdataEvent {
+  final String _classLevel, _majors, _classCode;
+
+  ClassdataAddBlocEvent(this._classLevel, this._majors, this._classCode);
+
+}
+

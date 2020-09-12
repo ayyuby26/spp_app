@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spp/utils/show_dialog.dart';
+import 'package:spp_app/utils/show_dialog.dart';
 
 List<DataRow> classdataProcess(
     List v, GlobalKey<ScaffoldState> _scaffoldKey, _) {

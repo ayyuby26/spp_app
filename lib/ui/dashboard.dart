@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:spp/bloc/class_data/classdata_bloc.dart';
-import 'package:spp/ui/class_data_view.dart';
-import 'package:spp/ui/login.dart';
-import 'package:spp/utils/menus.dart';
+import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
+import 'package:spp_app/ui/class_data_view.dart';
+import 'package:spp_app/ui/login.dart';
+import 'package:spp_app/utils/menus.dart';
 
 class Dashboard extends StatefulWidget {
   static Route route() {

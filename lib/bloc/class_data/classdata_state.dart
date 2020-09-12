@@ -73,17 +73,38 @@ class ClassdataDeleteFailed extends ClassdataState {}
 
  */
 class ClassdataUpdateSuccess extends ClassdataState {
-  final String _result;
+  // final String _result;
 
-  ClassdataUpdateSuccess(this._result);
+  // ClassdataUpdateSuccess(this._result);
 
-  String get message => _result;
+  // String get message => _result;
 
-  @override
-  List<Object> get resultUpdate => [_result];
+  // @override
+  // List<Object> get resultUpdate => [_result];
 }
 
 class ClassdataUpdateLoading extends ClassdataState {}
+
 class ClassdataUpdateFailed extends ClassdataState {}
+
 class ClassdataUpdateQueryError extends ClassdataState {}
+
 class ClassdataUpdateServerError extends ClassdataState {}
+
+
+
+/// Class Data Fetch Success
+class ClassdataAddSucces extends ClassdataState {
+  final String _message;
+
+  ClassdataAddSucces(this._message);
+
+  String get _result => _message; 
+
+  @override
+  List<Object> get result => [_message];
+}
+
+class ClassdataAddFailed extends ClassdataState {}
+class ClassdataAddLoading extends ClassdataState {}
+class ClassdataAddServerError extends ClassdataState {}
