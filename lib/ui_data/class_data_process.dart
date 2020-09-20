@@ -15,7 +15,8 @@ List<DataRow> classdataProcess(
           children: <Widget>[
             InkWell(
               onTap: () {
-                editDialog(_, v[i].classId, v[i].classLevel, v[i].majors, v[i].classCode);
+                editDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
+                    v[i].classCode);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -25,9 +26,7 @@ List<DataRow> classdataProcess(
                 ),
               ),
             ),
-            SizedBox(
-              width: 0,
-            ),
+            SizedBox(width: 0),
             InkWell(
               onTap: () {
                 deleteDialog(
@@ -71,28 +70,31 @@ classdataTable(List<DataRow> listDataRow, BuildContext context) {
         )
       : Center(
           child: Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                  height: MediaQuery.of(context).size.height - 170,
-                  margin: EdgeInsets.only(top: 20, bottom: 20),
-                  // padding: EdgeInsets.only(bottom: 10),
-                  child: SingleChildScrollView(
-                    child: DataTable(
-                        sortColumnIndex: 0,
-                        sortAscending: true,
-                        columnSpacing: 20,
-                        horizontalMargin: 20,
-                        columns: [
-                          DataColumn(label: Text("kelas")),
-                          DataColumn(label: Text("jurusan")),
-                          DataColumn(label: Text("kode")),
-                          DataColumn(label: Text("")),
-                        ],
-                        rows: listDataRow),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.black12)))),
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              height: MediaQuery.of(context).size.height - 170,
+              margin: EdgeInsets.only(top: 20, bottom: 20),
+              // padding: EdgeInsets.only(bottom: 10),
+              child: SingleChildScrollView(
+                child: DataTable(
+                    sortColumnIndex: 0,
+                    sortAscending: true,
+                    columnSpacing: 20,
+                    horizontalMargin: 20,
+                    columns: [
+                      DataColumn(label: Text("kelas")),
+                      DataColumn(label: Text("jurusan")),
+                      DataColumn(label: Text("kode")),
+                      DataColumn(label: Text("")),
+                    ],
+                    rows: listDataRow),
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black12),
+              ),
+            ),
+          ),
         );
 }

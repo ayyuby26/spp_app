@@ -18,7 +18,8 @@ class Account {
 
   static Future<Account> getAccount(user, pass) async {
     // String apiURL = 'http://192.168.73.105/spp/accounts/accounts.php?';
-    String apiURL = 'http://192.168.43.241/spp/accounts/accounts.php?';
+    // String apiURL = 'http://192.168.43.241/spp/accounts/accounts.php?';
+    String apiURL = 'http://10.0.2.2/spp/accounts/accounts.php?';
     var apiResult = await http.post(apiURL, body: {
       'user': user,
       'pass': pass,

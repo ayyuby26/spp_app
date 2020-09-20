@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
+import 'package:spp_app/bloc/student/student_bloc.dart';
 import 'package:spp_app/ui/class_data_view.dart';
 import 'package:spp_app/ui/login.dart';
 import 'package:spp_app/utils/menus.dart';
@@ -22,9 +23,6 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
 
-    // ignore: close_sinks
-    final ClassdataBloc classdataBloc = BlocProvider.of<ClassdataBloc>(context);
-
     Future<bool> _onWillPop() async {
       return (await showDialog(
             context: context,
@@ -32,13 +30,13 @@ class _DashboardState extends State<Dashboard> {
               title: Text('Are you sure?'),
               content: Text('Do you want to exit an App'),
               actions: <Widget>[
-                 FlatButton(
+                FlatButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  child:  Text('No'),
+                  child: Text('No'),
                 ),
-                 FlatButton(
+                FlatButton(
                   onPressed: () => Navigator.of(context).pop(true),
-                  child:  Text('Yes'),
+                  child: Text('Yes'),
                 ),
               ],
             ),
@@ -141,12 +139,14 @@ class _DashboardState extends State<Dashboard> {
                             switch (i) {
                               case 0:
                                 {
-                                  classdataBloc.add(ClassdataBlocEvent());
-                                  Get.to(ClassDataView());
+                                  context.bloc<ClassdataBloc>().add(ClassdataBlocEvent());
+                                  Get.toNamed("/class");
                                 }
                                 break;
                               case 1:
-                                {}
+                                {context.bloc<StudentBloc>().add(StudentBlocEvent());
+                                  Get.toNamed("/student");
+                                }
                                 break;
                               case 2:
                                 {}

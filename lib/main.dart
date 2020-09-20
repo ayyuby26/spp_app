@@ -2,24 +2,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
+import 'package:spp_app/bloc/student/student_bloc.dart';
+import 'package:spp_app/ui/class_data_view.dart';
+import 'package:spp_app/ui/dashboard.dart';
 import 'package:spp_app/ui/login.dart';
+import 'package:spp_app/ui/student_page.dart';
 import 'bloc/account/account_bloc.dart';
+import 'package:get/src/navigation/routes/transitions_type.dart' as tr;
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final _cup = tr.Transition.cupertino;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AccountBloc>(create: (context) => AccountBloc(),),
-        BlocProvider<ClassdataBloc>(create: (context) => ClassdataBloc(),),
+        BlocProvider<AccountBloc>(create: (_) => AccountBloc()),
+        BlocProvider<ClassdataBloc>(create: (_) => ClassdataBloc()),
+        BlocProvider<StudentBloc>(create: (_) => StudentBloc()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        initialRoute: "/",
+        getPages: [
+          GetPage(name: '/', page: () => Login()),
+          GetPage(name: '/dashboard', page: () => Dashboard()),
+          GetPage(
+              name: '/class', page: () => ClassDataView(), transition: _cup),
+          GetPage(name: '/student', page: () => StudentPage(), transition: _cup)
+        ],
       ),
     );
   }
