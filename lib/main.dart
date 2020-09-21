@@ -5,7 +5,7 @@ import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
 import 'package:spp_app/bloc/student/student_bloc.dart';
 import 'package:spp_app/ui/class_data_view.dart';
 import 'package:spp_app/ui/dashboard.dart';
-import 'package:spp_app/ui/login.dart';
+import 'package:spp_app/ui/login/login.dart';
 import 'package:spp_app/ui/student_page.dart';
 import 'bloc/account/account_bloc.dart';
 import 'package:get/src/navigation/routes/transitions_type.dart' as tr;

@@ -20,15 +20,16 @@ class _ClassDataStateView extends State<ClassDataView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          heroTag: "tambah soal",
-          child: Icon(
-            Icons.add,
-            size: 30,
-          ),
-          tooltip: "Tambah Soal",
-          onPressed: () {
-            addDialog(context);
-          }),
+        heroTag: "tambah soal",
+        child: Icon(
+          Icons.add,
+          size: 30,
+        ),
+        tooltip: "Tambah Soal",
+        onPressed: () {
+          addDialog(context);
+        },
+      ),
       key: _scaffoldKey,
       body: Container(
         child: SingleChildScrollView(
@@ -68,7 +69,7 @@ class _ClassDataStateView extends State<ClassDataView> {
                 listener: (_, v) {
                   /// CLASS DATA DELETE
                   if (v is ClassdataDeleteLoading)
-                    loadingDialog(_, _delete, v);
+                    loadingDialog(_, _delete);
                   else if (v is ClassdatadeleteSuccess) {
                     if (_delete.currentContext != null)
                       Navigator.pop(_delete.currentContext);
@@ -82,7 +83,7 @@ class _ClassDataStateView extends State<ClassDataView> {
 
                   ///CLASS DATA UPDATE
                   else if (v is ClassdataUpdateLoading)
-                    loadingDialog(_, _delete, v);
+                    loadingDialog(_, _delete);
                   else if (v is ClassdataUpdateSuccess) {
                     if (_delete.currentContext != null)
                       Navigator.pop(_delete.currentContext);
@@ -107,7 +108,7 @@ class _ClassDataStateView extends State<ClassDataView> {
 
                   /// CLASS DATA ADD
                   else if (v is ClassdataAddLoading)
-                    loadingDialog(_, _delete, v);
+                    loadingDialog(_, _delete);
                   else if (v is ClassdataAddSucces) {
                     if (_delete.currentContext != null)
                       Navigator.pop(_delete.currentContext);
