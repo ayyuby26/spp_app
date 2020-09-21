@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:spp_app/utils/show_dialog.dart';
+// import 'package:spp_app/utils/show_dialog.dart';
 
 class StudentDataRow extends StatelessWidget {
+  final List<DataRow> listDataRow;
+  const StudentDataRow({Key key, this.listDataRow}) : super(key: key);
+
   List<DataRow> classdataProcess(
-      List v, GlobalKey<ScaffoldState> _scaffoldKey, _) {
+    List v,
+    GlobalKey<ScaffoldState> _scaffoldKey,
+    BuildContext _,
+  ) {
     List<DataRow> listDataRow = [];
     listDataRow.clear();
+
     for (int i = 0; i < v.length; i++)
       listDataRow.add(
         DataRow(cells: <DataCell>[
-          DataCell(Text(v[i].classLevel)),
-          DataCell(Text(v[i].majors)),
-          DataCell(Text(v[i].classCode)),
+          DataCell(Text(v[i].studentId)),
+          DataCell(Text(v[i].classId)),
+          DataCell(Text(v[i].studentName)),
+          DataCell(Text(v[i].sex)),
+          DataCell(Text(v[i].dateOfBirth)),
+          DataCell(Text(v[i].address)),
+          DataCell(Text(v[i].religion)),
+          DataCell(Text(v[i].schoolYear)),
           DataCell(Row(
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  editDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
-                      v[i].classCode);
+                  // editDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
+                  //     v[i].classCode);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -31,17 +42,17 @@ class StudentDataRow extends StatelessWidget {
               SizedBox(width: 0),
               InkWell(
                 onTap: () {
-                  deleteDialog(
-                      _scaffoldKey,
-                      _,
-                      "Apakah anda yakin ingin menghapus kelas " +
-                          v[i].classLevel +
-                          " " +
-                          v[i].majors +
-                          " " +
-                          v[i].classCode +
-                          " ?",
-                      v[i].classId);
+                  // deleteDialog(
+                  //     _scaffoldKey,
+                  //     _,
+                  //     "Apakah anda yakin ingin menghapus kelas " +
+                  //         v[i].classLevel +
+                  //         " " +
+                  //         v[i].majors +
+                  //         " " +
+                  //         v[i].classCode +
+                  //         " ?",
+                  //     v[i].classId);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -58,14 +69,8 @@ class StudentDataRow extends StatelessWidget {
     return listDataRow;
   }
 
-  List<DataRow> listDataRow;
   @override
   Widget build(BuildContext context) {
-
-    // List<DataRow> listDataRow, BuildContext context
-
-    // TODO: bikin konstruktor buat nerima data di atas
-
     return listDataRow.length == 0
         ? Center(
             child: Container(
@@ -81,23 +86,34 @@ class StudentDataRow extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal:25),
               child: Container(
                 height: MediaQuery.of(context).size.height - 170,
                 margin: EdgeInsets.only(top: 20, bottom: 20),
                 // padding: EdgeInsets.only(bottom: 10),
                 child: SingleChildScrollView(
-                  child: DataTable(
-                      sortColumnIndex: 0,
-                      sortAscending: true,
-                      columnSpacing: 20,
-                      horizontalMargin: 20,
-                      columns: [
-                        DataColumn(label: Text("kelas")),
-                        DataColumn(label: Text("jurusan")),
-                        DataColumn(label: Text("kode")),
-                        DataColumn(label: Text("")),
-                      ],
-                      rows: listDataRow),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                        sortColumnIndex: 0,
+                        sortAscending: true,
+                        columnSpacing: 20,
+                        horizontalMargin: 20,
+                        columns: [
+                          DataColumn(
+                            label: Text("ID Siswa"),
+                          ),
+                          DataColumn(label: Text("ID kelas")),
+                          DataColumn(label: Text("Nama Siswa")),
+                          DataColumn(label: Text("Jenis Kelamin")),
+                          DataColumn(label: Text("Tanggal Lahir")),
+                          DataColumn(label: Text("Alamat")),
+                          DataColumn(label: Text("Agama")),
+                          DataColumn(label: Text("Tahun Ajar")),
+                          DataColumn(label: Text("")),
+                        ],
+                        rows: listDataRow),
+                  ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

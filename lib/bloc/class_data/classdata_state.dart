@@ -91,20 +91,35 @@ class ClassdataUpdateQueryError extends ClassdataState {}
 
 class ClassdataUpdateServerError extends ClassdataState {}
 
-
-
 /// Class Data Fetch Success
 class ClassdataAddSucces extends ClassdataState {
   final String _message;
 
   ClassdataAddSucces(this._message);
 
-  String get _result => _message; 
+  String get _result => _message;
 
   @override
   List<Object> get result => [_message];
 }
 
 class ClassdataAddFailed extends ClassdataState {}
+
 class ClassdataAddLoading extends ClassdataState {}
+
 class ClassdataAddServerError extends ClassdataState {}
+
+/**?
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+class ClassdataSortLoading extends ClassdataState {}
+class ClassDataSorted extends ClassdataState {
+  final List v;
+
+  ClassDataSorted(this.v);
+}

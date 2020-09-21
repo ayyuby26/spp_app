@@ -18,7 +18,8 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     if (event is StudentBlocEvent) {
       yield StudentLoading();
       try {
-        List<Student> _list = await Student.getStudent();
+         List<Student> _list = await Student.getStudent();
+      print(_list);
         if (_list != null) yield StudentLoaded(_list);
       } catch (_) {
         yield StudentFailed();

@@ -20,8 +20,8 @@ class ClassdataBloc extends Bloc<ClassdataEvent, ClassdataState> {
       } catch (e) {
         yield ClassdataFailed();
       }
-    } 
-    
+    }
+
     /// CLASS DATA DELETE
     else if (event is ClassdataDeleteBlocEvent) {
       yield ClassdataDeleteLoading();
@@ -34,8 +34,8 @@ class ClassdataBloc extends Bloc<ClassdataEvent, ClassdataState> {
       } catch (e) {
         yield ClassdataDeleteFailed();
       }
-    } 
-    
+    }
+
     /// CLASS DATA UPDATE
     else if (event is ClassdataUpdateBlocEvent) {
       yield ClassdataUpdateLoading();
@@ -51,13 +51,13 @@ class ClassdataBloc extends Bloc<ClassdataEvent, ClassdataState> {
       } catch (e) {
         yield ClassdataUpdateServerError();
       }
-    } 
-    
+    }
+
     /// CLASS DATA ADD
     else if (event is ClassdataAddBlocEvent) {
       yield ClassdataAddLoading();
       try {
-         String _message = await ClassData.classDataAdd(
+        String _message = await ClassData.classDataAdd(
             event._classLevel, event._majors, event._classCode);
         if (_message == "success")
           yield ClassdataAddSucces(_message);
@@ -66,7 +66,24 @@ class ClassdataBloc extends Bloc<ClassdataEvent, ClassdataState> {
         else
           yield ClassdataAddServerError();
       } catch (e) {
-          yield ClassdataAddServerError();}
+        yield ClassdataAddServerError();
+      }
+    }
+
+    //SORT
+    else if (event is ClassSortSmall) {
+      yield ClassdataSortLoading();
+      try {
+        if (event.status)
+          event.v.sort((a, b) =>
+              int.parse(a.classLevel).compareTo(int.parse(b.classLevel)));
+        else
+          event.v.sort((a, b) =>
+              int.parse(b.classLevel).compareTo(int.parse(a.classLevel)));
+        yield ClassdataLoaded(event.v);
+      } catch (e) {
+        yield ClassdataAddServerError();
+      }
     }
   }
 }

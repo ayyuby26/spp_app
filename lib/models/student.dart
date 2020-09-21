@@ -2,24 +2,24 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Student {
-  final String _studentId,
-      _classId,
-      _studentName,
-      _sex,
-      _dateOfBirth,
-      _address,
-      _religion,
-      _schoolYear;
+  final String studentId,
+      classId,
+      studentName,
+      sex,
+      dateOfBirth,
+      address,
+      religion,
+      schoolYear;
 
   Student(
-    this._studentId,
-    this._classId,
-    this._studentName,
-    this._sex,
-    this._dateOfBirth,
-    this._address,
-    this._religion,
-    this._schoolYear,
+    this.studentId,
+    this.classId,
+    this.studentName,
+    this.sex,
+    this.dateOfBirth,
+    this.address,
+    this.religion,
+    this.schoolYear,
   );
 
   factory Student.fromJson(Map<String, dynamic> k) => Student(
@@ -34,11 +34,11 @@ class Student {
       );
 
   static Future<List<Student>> getStudent() async {
-    const String apiURL = 'http://localhost/spp/student_data/student_data.php';
+    const String apiURL = 'http://10.0.2.2/spp/student_data/student_data.php';
     var apiResult = await http.get(apiURL);
-    List jsoN = json.decode(apiResult.body);
+    List jsoN = json.decode(apiResult.body) as List;
     List<Student> list1 = [];
-    jsoN.map((e) => list1.add(Student.fromJson(jsoN[e]))).toList();
+    for (int i = 0; i < jsoN.length; i++) list1.add(Student.fromJson(jsoN[i]));
     return list1;
   }
 

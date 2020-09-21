@@ -12,8 +12,7 @@ class ClassDataView extends StatefulWidget {
 }
 
 class _ClassDataStateView extends State<ClassDataView> {
-  final _scaffoldKey =
-      GlobalKey<ScaffoldState>(debugLabel: "scaffoldKey classdata");
+  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "scaffKey");
   final _delete = GlobalKey<FormState>(debugLabel: "delete classdata");
   final _alert = GlobalKey<FormState>(debugLabel: "loading classdata");
 
@@ -60,8 +59,9 @@ class _ClassDataStateView extends State<ClassDataView> {
                   );
                 else if (v is ClassdataLoaded) {
                   listDataRow = classdataProcess(v.data, _scaffoldKey, _);
-                  return classdataTable(listDataRow, context);
+                  return classdataTable(v.data, listDataRow, context);
                 }
+                print(listDataRow);
                 return Container();
               }),
               BlocListener<ClassdataBloc, ClassdataState>(
@@ -118,10 +118,11 @@ class _ClassDataStateView extends State<ClassDataView> {
                     if (_delete.currentContext != null)
                       Navigator.pop(_delete.currentContext);
                     snackBar(_scaffoldKey, "Gagal menambah kelas");
-                  } else if (v is ClassdataAddServerError){
+                  } else if (v is ClassdataAddServerError) {
                     if (_delete.currentContext != null)
                       Navigator.pop(_delete.currentContext);
-                    snackBar(_scaffoldKey, "Gagal menambah kelas, server bermasalah");
+                    snackBar(_scaffoldKey,
+                        "Gagal menambah kelas, server bermasalah");
                     BlocProvider.of<ClassdataBloc>(context)
                         .add(ClassdataBlocEvent());
                   }

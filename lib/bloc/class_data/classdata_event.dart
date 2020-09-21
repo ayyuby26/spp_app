@@ -9,7 +9,6 @@ class ClassdataBlocEvent extends ClassdataEvent {}
 
 class ClassdataReset extends ClassdataEvent {}
 
-
 /// CLASS DATA DELETE
 class ClassdataDeleteBlocEvent extends ClassdataEvent {
   final String id;
@@ -24,7 +23,8 @@ class ClassdataDeleteBlocEvent extends ClassdataEvent {
 class ClassdataUpdateBlocEvent extends ClassdataEvent {
   final String _id, _classLevel, _majors, _classCode;
 
-  ClassdataUpdateBlocEvent(this._id, this._classLevel, this._majors, this._classCode);
+  ClassdataUpdateBlocEvent(
+      this._id, this._classLevel, this._majors, this._classCode);
 
   @override
   List<Object> get props => [_id, _classLevel, _majors, _classCode];
@@ -35,6 +35,11 @@ class ClassdataAddBlocEvent extends ClassdataEvent {
   final String _classLevel, _majors, _classCode;
 
   ClassdataAddBlocEvent(this._classLevel, this._majors, this._classCode);
-
 }
 
+//Class data sort from small
+class ClassSortSmall extends ClassdataEvent {
+  final bool status;
+  final List v;
+  ClassSortSmall(this.status, this.v);
+}

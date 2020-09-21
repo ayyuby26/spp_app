@@ -9,10 +9,11 @@ class StudentPage extends StatefulWidget {
 }
 
 class _StudentPageState extends State<StudentPage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "sK Student");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
+      key: _scaffoldKey,
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -38,7 +39,11 @@ class _StudentPageState extends State<StudentPage> {
                     ),
                   );
                 else if (state is StudentLoaded) {
-                  return StudentDataRow();
+                  _listDataRow = StudentDataRow()
+                      .classdataProcess(state.data, _scaffoldKey, _);
+                  return StudentDataRow(
+                    listDataRow: _listDataRow,
+                  );
                 }
                 return Container();
               })

@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.13"
+  colour:
+    dependency: "direct main"
+    description:
+      name: colour
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   convert:
     dependency: transitive
     description:
@@ -234,7 +241,7 @@ packages:
       name: path_provider_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4+3"
+    version: "0.0.4+4"
   path_provider_platform_interface:
     dependency: transitive
     description:

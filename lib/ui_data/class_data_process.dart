@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
 import 'package:spp_app/utils/show_dialog.dart';
 
 List<DataRow> classdataProcess(
@@ -56,7 +58,7 @@ List<DataRow> classdataProcess(
   return listDataRow;
 }
 
-classdataTable(List<DataRow> listDataRow, BuildContext context) {
+classdataTable(List v, List<DataRow> listDataRow, BuildContext context) {
   return listDataRow.length == 0
       ? Center(
           child: Container(
@@ -70,6 +72,7 @@ classdataTable(List<DataRow> listDataRow, BuildContext context) {
         )
       : Center(
           child: Container(
+              margin: EdgeInsets.symmetric(horizontal:25),
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width,
             child: Container(
@@ -83,7 +86,15 @@ classdataTable(List<DataRow> listDataRow, BuildContext context) {
                     columnSpacing: 20,
                     horizontalMargin: 20,
                     columns: [
-                      DataColumn(label: Text("kelas")),
+                      DataColumn(
+                          label: Text("kelas"),
+                          onSort: (_, __) {
+                            print(_.toString() +__.toString());
+                            // ignore: close_sinks
+                            final accountBloc =
+                                BlocProvider.of<ClassdataBloc>(context);
+                            accountBloc.add(ClassSortSmall(__, v));
+                          }),
                       DataColumn(label: Text("jurusan")),
                       DataColumn(label: Text("kode")),
                       DataColumn(label: Text("")),

@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
   final _cup = tr.Transition.cupertino;
   @override
   Widget build(BuildContext context) {
+    final _getPages = [
+      GetPage(name: '/', page: () => Login()),
+      GetPage(name: '/dashboard', page: () => Dashboard()),
+      GetPage(name: '/class', page: () => ClassDataView(), transition: _cup),
+      GetPage(name: '/student', page: () => StudentPage(), transition: _cup),
+    ];
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<AccountBloc>(create: (_) => AccountBloc()),
@@ -27,13 +34,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
-        getPages: [
-          GetPage(name: '/', page: () => Login()),
-          GetPage(name: '/dashboard', page: () => Dashboard()),
-          GetPage(
-              name: '/class', page: () => ClassDataView(), transition: _cup),
-          GetPage(name: '/student', page: () => StudentPage(), transition: _cup)
-        ],
+        getPages: _getPages,
       ),
     );
   }
