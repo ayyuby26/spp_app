@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spp_app/bloc/student/student_bloc.dart';
-import 'package:spp_app/ui_data/student_data_row.dart';
+import 'package:spp_app/ui/student_page/student_page_process.dart';
 
 class StudentPage extends StatefulWidget {
   @override
@@ -9,20 +9,19 @@ class StudentPage extends StatefulWidget {
 }
 
 class _StudentPageState extends State<StudentPage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "sK Student");
+  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "sK");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Data Siswa"),
+        centerTitle: true,
+      ),
       key: _scaffoldKey,
       body: Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40),
-              Text(
-                "Data Siswa",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
               BlocBuilder<StudentBloc, StudentState>(builder: (_, state) {
                 List<DataRow> _listDataRow = [];
                 _listDataRow.clear();

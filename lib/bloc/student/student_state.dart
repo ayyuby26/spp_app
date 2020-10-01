@@ -76,4 +76,4 @@ class StudentUpdateQueryError extends StudentState {}
 
 class StudentAddLoading extends StudentState {}
 
-class StudentAddServerError extends StudentState {}
+class StudentUpdateServerError extends StudentState {}

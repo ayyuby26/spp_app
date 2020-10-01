@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spp_app/ui/student_page/student_page_dialog.dart';
 // import 'package:spp_app/utils/show_dialog.dart';
 
 class StudentDataRow extends StatelessWidget {
@@ -28,8 +29,18 @@ class StudentDataRow extends StatelessWidget {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  // editDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
-                  //     v[i].classCode);
+                  StudentPageDialog.addEditDialog(
+                    _,
+                    StudentDialogType.edit,
+                    studentId: v[i].studentId,
+                    classId: v[i].classId,
+                    studentName: v[i].studentName,
+                    sex: v[i].sex,
+                    dateOfBirth: v[i].dateOfBirth,
+                    address: v[i].address,
+                    religion: v[i].religion,
+                    schoolYear: v[i].schoolYear,
+                  );
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -86,7 +97,7 @@ class StudentDataRow extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal:25),
+              margin: EdgeInsets.symmetric(horizontal: 15),
               child: Container(
                 height: MediaQuery.of(context).size.height - 170,
                 margin: EdgeInsets.only(top: 20, bottom: 20),

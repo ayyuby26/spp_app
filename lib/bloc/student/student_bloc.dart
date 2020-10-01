@@ -18,11 +18,37 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     if (event is StudentBlocEvent) {
       yield StudentLoading();
       try {
-         List<Student> _list = await Student.getStudent();
-      print(_list);
+        final List<Student> _list = await Student.getStudent();
+        print(_list);
         if (_list != null) yield StudentLoaded(_list);
       } catch (_) {
         yield StudentFailed();
+      }
+    }
+
+// UPDATE
+    if (event is StudentUpdateBlocEvent) {
+      yield StudentLoading();
+      try {
+        final String _message = await Student.updateStudent(
+          event.studentId,
+          event.classId,
+          event.studentName,
+          event.sex,
+          event.dateOfBirth,
+          event.address,
+          event.religion,
+          event.schoolYear,
+        );
+        if (_message == "success")
+          yield StudentDeleteSuccess(_message);
+        else if (_message == "failed")
+          yield StudentFailed();
+        else
+          yield StudentUpdateQueryError();
+        print(_message);
+      } catch (e) {
+        yield StudentUpdateServerError();
       }
     }
 

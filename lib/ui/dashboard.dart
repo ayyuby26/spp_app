@@ -12,29 +12,30 @@ class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
+
 class _DashboardState extends State<Dashboard> {
   final _lastName = (Get.arguments as Account).fullName.split(" ").last;
   @override
   Widget build(BuildContext context) {
-    Future<bool> _onWillPop() async =>
-        await showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('Do you want to exit an App'),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () => Get.back(result: false),
-                child: Text('No'),
-              ),
-              FlatButton(
-                onPressed: () => Get.back(result: true),
-                child: Text('Yes'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
+    Future<bool> _onWillPop() async {
+      return await showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Are you sure?'),
+          content: Text('Do you want to exit an App'),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () => Get.back(result: false),
+              child: const Text('No'),
+            ),
+            FlatButton(
+              onPressed: () => Get.back(result: true),
+              child: const Text('Yes'),
+            ),
+          ],
+        ),
+      );
+    }
 
     final _topWidget = Stack(
       overflow: Overflow.clip,
@@ -48,7 +49,7 @@ class _DashboardState extends State<Dashboard> {
               // );
               Get.offNamed("/");
             },
-            child: Text("Logout"),
+            child: const Text("Logout"),
           ),
         ),
         Container(
@@ -56,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
           alignment: Alignment.bottomLeft,
           child: Text(
             "Selamat datang, " + _lastName,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 17,
             ),
@@ -65,7 +66,7 @@ class _DashboardState extends State<Dashboard> {
       ],
     );
 
-    _iconTextMenus(int i) => Column(
+    _iconTextMenus(int i,) => Column(
           children: <Widget>[
             SizedBox(height: 25),
             SvgPicture.asset(Items.myList[i].img, height: 80),
@@ -143,9 +144,9 @@ class _DashboardState extends State<Dashboard> {
       child: Scaffold(
         body: Column(
           children: <Widget>[
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _topWidget,
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             _menus,
           ],
         ),

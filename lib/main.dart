@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
 import 'package:spp_app/bloc/student/student_bloc.dart';
-import 'package:spp_app/ui/class_data_view.dart';
+import 'package:spp_app/ui/class_page/class_page.dart';
 import 'package:spp_app/ui/dashboard.dart';
 import 'package:spp_app/ui/login/login.dart';
-import 'package:spp_app/ui/student_page.dart';
+import 'package:spp_app/ui/student_page/student_page.dart';
 import 'bloc/account/account_bloc.dart';
 import 'package:get/src/navigation/routes/transitions_type.dart' as tr;
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     final _getPages = [
       GetPage(name: '/', page: () => Login()),
       GetPage(name: '/dashboard', page: () => Dashboard()),
-      GetPage(name: '/class', page: () => ClassDataView(), transition: _cup),
+      GetPage(name: '/class', page: () => ClassPage(), transition: _cup),
       GetPage(name: '/student', page: () => StudentPage(), transition: _cup),
     ];
 

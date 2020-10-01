@@ -1,14 +1,12 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
 
 loadingDialog(
-  BuildContext _,
-  GlobalKey<FormState> _alert,
+  final BuildContext _,
+  final GlobalKey<FormState> _alert,
 ) =>
     showDialog(
       context: _,
@@ -18,7 +16,7 @@ loadingDialog(
           child: Column(
             children: [
               Container(
-                child: FlareActor(
+                child: const FlareActor(
                   "assets/Loader.flr",
                   fit: BoxFit.contain,
                   animation: "Loading",
@@ -31,186 +29,48 @@ loadingDialog(
         ),
       ),
     );
-
-deleteDialog(
-  GlobalKey<ScaffoldState> _scaffoldKey,
-  BuildContext context,
-  String content,
-  String id,
-) { //TODO: change this function so that it can be like in dashboard it can be used on other pages
-  showDialog(
-    context: context,
-    builder: (_) => CupertinoAlertDialog(
-      title: Text("Konfirmasi hapus"),
-      content: Container(
-        padding: EdgeInsets.only(top: 15),
-        child: Text(content),
-      ),
-      actions: <Widget>[
-        CupertinoDialogAction(
-            onPressed: () => Get.back(result: false),
-            isDefaultAction: false,
-            child: Text("Batal")),
-        CupertinoDialogAction(
-          onPressed: () {
-            _.bloc<ClassdataBloc>().add(ClassdataDeleteBlocEvent(id));
-            Get.back(result: true);
-          },
-          textStyle: TextStyle(color: Colors.red),
-          isDefaultAction: true,
-          child: Text("Hapus"),
-        ),
-      ],
-    ),
-  );
-}
-
-errorDialog(_) {
-  showDialog(
-      context: _,
-      builder: (_) {
-        return CupertinoAlertDialog(
-          title: Text("Kesalahan ditemukan"),
-          content: Container(
-              padding: EdgeInsets.only(top: 15),
-              child: Text("Tidak dapat terhubung ke server")),
-          actions: <Widget>[
-            CupertinoDialogAction(
-                onPressed: () {
-                  Navigator.pop(_);
-                },
-                isDefaultAction: true,
-                child: Text("Tutup")),
-          ],
-        );
-      });
-}
-
-editDialog(BuildContext _, String id, String classLevel, String majors,
-    String classCode) {
-  final classLevelController = TextEditingController(text: classLevel);
-  final majorsController = TextEditingController(text: majors);
-  final classCodeController = TextEditingController(text: classCode);
-  // ignore: close_sinks
-  final _bloc = BlocProvider.of<ClassdataBloc>(_);
-  showDialog(
-      context: _,
-      builder: (_) {
-        return CupertinoAlertDialog(
-          title: Text("Ubah Data"),
-          content: Container(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
-              children: <Widget>[
-                CupertinoTextField(
-                  controller: classLevelController,
-                  placeholder: "Kelas",
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CupertinoTextField(
-                  controller: majorsController,
-                  placeholder: "Jurusan",
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CupertinoTextField(
-                  maxLengthEnforced: true,
-                  maxLength: 1, //di DB sudah di sett panjang maks 1
-                  controller: classCodeController,
-                  placeholder: "Kode Kelas",
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-                child: Text("Batal"),
-                onPressed: () {
-                  Get.back();
-                }),
-            CupertinoDialogAction(
-                isDefaultAction: true,
-                child: Text("Simpan"),
-                onPressed: () {
-                  Get.back();
-                  _bloc.add(ClassdataUpdateBlocEvent(
-                    id,
-                    classLevelController.text,
-                    majorsController.text,
-                    classCodeController.text,
-                  ));
-                })
-          ],
-        );
-      });
-}
-
-addDialog(BuildContext _) {
-  final classLevelController = TextEditingController();
-  final majorsController = TextEditingController();
-  final classCodeController = TextEditingController();
-  // ignore: close_sinks
-  final bloc = BlocProvider.of<ClassdataBloc>(_);
-  showDialog(
-    context: _,
-    builder: (_) {
-      return CupertinoAlertDialog(
-        title: Text("Tambah Data"),
+Future<bool> deleteDialog(
+  final BuildContext context,
+  final String content,
+) async =>
+    await showDialog(
+      context: context,
+      builder: (_) => CupertinoAlertDialog(
+        title: const Text("Konfirmasi hapus"),
         content: Container(
-          padding: EdgeInsets.only(top: 10),
-          child: Column(
-            children: <Widget>[
-              CupertinoTextField(
-                controller: classLevelController,
-                placeholder: "Kelas",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              CupertinoTextField(
-                controller: majorsController,
-                placeholder: "Jurusan",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              CupertinoTextField(
-                onChanged: (e) {
-                  classCodeController.text = e.toUpperCase();
-                },
-                textCapitalization: TextCapitalization.characters,
-                maxLength: 1,
-                controller: classCodeController,
-                placeholder: "Kode Kelas",
-              ),
-            ],
-          ),
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(content),
         ),
         actions: <Widget>[
           CupertinoDialogAction(
-              child: Text("Batal"),
-              onPressed: () {
-                Get.back();
-              }),
+            onPressed: () => Get.back(result: false),
+            isDefaultAction: false,
+            child: const Text("Batal"),
+          ),
           CupertinoDialogAction(
+            onPressed: () => Get.back(result: true),
+            textStyle: const TextStyle(color: Colors.red),
             isDefaultAction: true,
-            child: Text("Tambah"),
-            onPressed: () {
-              Get.back();
-              bloc.add(
-                ClassdataAddBlocEvent(
-                  classLevelController.text,
-                  majorsController.text,
-                  classCodeController.text,
-                ),
-              );
-            },
-          )
+            child: const Text("Hapus"),
+          ),
         ],
-      );
-    },
-  );
-}
+      ),
+    );
+
+errorDialog(final BuildContext _) => showDialog(
+      context: _,
+      builder: (_) => CupertinoAlertDialog(
+        title: const Text("Kesalahan ditemukan"),
+        content: Container(
+          padding: EdgeInsets.only(top: 15),
+          child: const Text("Tidak dapat terhubung ke server"),
+        ),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            onPressed: Get.back,
+            isDefaultAction: true,
+            child: Text("Tutup"),
+          ),
+        ],
+      ),
+    );

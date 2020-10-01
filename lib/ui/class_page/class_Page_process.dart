@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spp_app/bloc/class_data/classdata_bloc.dart';
+import 'package:spp_app/ui/class_page/class_page_dialog.dart';
 import 'package:spp_app/utils/show_dialog.dart';
 
 List<DataRow> classdataProcess(
@@ -17,7 +18,7 @@ List<DataRow> classdataProcess(
           children: <Widget>[
             InkWell(
               onTap: () {
-                editDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
+                ClassPageDialog.addEditDialog(_, v[i].classId, v[i].classLevel, v[i].majors,
                     v[i].classCode);
               },
               child: Container(
@@ -30,18 +31,20 @@ List<DataRow> classdataProcess(
             ),
             SizedBox(width: 0),
             InkWell(
-              onTap: () {
-                deleteDialog(
-                    _scaffoldKey,
-                    _,
-                    "Apakah anda yakin ingin menghapus kelas " +
-                        v[i].classLevel +
-                        " " +
-                        v[i].majors +
-                        " " +
-                        v[i].classCode +
-                        " ?",
-                    v[i].classId);
+              onTap: () async {
+                await deleteDialog(
+                  _,
+                  "Apakah anda yakin ingin menghapus kelas " +
+                      v[i].classLevel +
+                      " " +
+                      v[i].majors +
+                      " " +
+                      v[i].classCode +
+                      " ?",
+                )
+                    ? ckl(_, v[i].classId)
+                    // ignore: unnecessary_statements
+                    : null;
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -72,7 +75,7 @@ classdataTable(List v, List<DataRow> listDataRow, BuildContext context) {
         )
       : Center(
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal:25),
+            margin: EdgeInsets.symmetric(horizontal: 25),
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width,
             child: Container(
@@ -89,7 +92,7 @@ classdataTable(List v, List<DataRow> listDataRow, BuildContext context) {
                       DataColumn(
                           label: Text("kelas"),
                           onSort: (_, __) {
-                            print(_.toString() +__.toString());
+                            print(_.toString() + __.toString());
                             // ignore: close_sinks
                             final accountBloc =
                                 BlocProvider.of<ClassdataBloc>(context);
@@ -108,4 +111,8 @@ classdataTable(List v, List<DataRow> listDataRow, BuildContext context) {
             ),
           ),
         );
+}
+
+ckl(BuildContext context, String id) {
+  context.bloc<ClassdataBloc>().add(ClassdataDeleteBlocEvent(id));
 }

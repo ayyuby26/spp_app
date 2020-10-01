@@ -13,57 +13,68 @@ class StudentReset extends StudentEvent {}
 
 /// STUDENT DELETE
 class StudentDeleteBlocEvent extends StudentEvent {
-  final String _studentId;
+  final String studentId;
 
-  StudentDeleteBlocEvent(this._studentId);
+  StudentDeleteBlocEvent(this.studentId);
 
   @override
-  List<Object> get props => [_studentId];
+  List<Object> get props => [studentId];
 }
 
 /// STUDENT UPDATE
 class StudentUpdateBlocEvent extends StudentEvent {
-  final String _studentId,
-      _classId,
-      _studentName,
-      _sex,
-      _dateOfBirth,
-      _address,
-      _schoolYear;
+  final String studentId;
+  final String classId;
+  final String studentName;
+  final String sex;
+  final String dateOfBirth;
+  final String address;
+  final String religion;
+  final String schoolYear;
 
-  StudentUpdateBlocEvent(
-    this._studentId,
-    this._classId,
-    this._studentName,
-    this._sex,
-    this._dateOfBirth,
-    this._address,
-    this._schoolYear,
-  );
+  StudentUpdateBlocEvent({
+    this.studentId,
+    this.classId,
+    this.studentName,
+    this.sex,
+    this.dateOfBirth,
+    this.address,
+    this.religion,
+    this.schoolYear,
+  });
 
   @override
   List<Object> get props => [
-        _studentId,
-        _classId,
-        _studentName,
-        _sex,
-        _dateOfBirth,
-        _address,
-        _schoolYear
+        studentId,
+        classId,
+        studentName,
+        sex,
+        dateOfBirth,
+        address,
+        religion,
+        schoolYear,
       ];
 }
 
 // STUDENT ADD
 class StudentAddBlocEvent extends StudentEvent {
-  final String _studentId,
-      _classId,
-      _studentName,
-      _sex,
-      _dateOfBirth,
-      _address,
-      _schoolYear;
+  final String studentId,
+      classId,
+      studentName,
+      sex,
+      dateOfBirth,
+      address,
+      religion,
+      schoolYear;
 
-  StudentAddBlocEvent(this._studentId, this._classId, this._studentName, this._sex, this._dateOfBirth, this._address, this._schoolYear);
-
-
+  StudentAddBlocEvent({
+    this.studentId,
+    this.classId,
+    this.studentName,
+    this.sex,
+    this.dateOfBirth,
+    this.address,
+    this.religion,
+    this.schoolYear,
+  });
 }

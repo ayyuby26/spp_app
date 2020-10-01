@@ -42,60 +42,59 @@ class Student {
     return list1;
   }
 
-  static Future<String> deleteStudent(String _studentId) async {
+  static Future<String> deleteStudent(String studentId) async {
     final String url = 'http://10.0.2.2/spp/class_data/student_delete.php';
-    var result = await http.post(url, body: {'id_siswa': _studentId});
+    var result = await http.post(url, body: {'id_siswa': studentId});
 
     var jsoN = json.decode(result.body);
     return (jsoN as Map<String, dynamic>)['message'];
   }
 
   static Future<String> updateStudent(
-    String _studentId,
-    String _classId,
-    String _studentName,
-    String _sex,
-    String _dateOfBirth,
-    String _address,
-    String _religion,
-    String _schoolYear,
+    String studentId,
+    String classId,
+    String studentName,
+    String sex,
+    String dateOfBirth,
+    String address,
+    String religion,
+    String schoolYear,
   ) async {
-    const String url = 'http://10.0.2.2/spp/class_data/student_update.php';
+    const String url = 'http://10.0.2.2/spp/student_data/student_update.php';
     var result = await http.post(url, body: {
-      'studentId': _studentId,
-      'classId': _classId,
-      'studentName': _studentName,
-      'sex': _sex,
-      'dateOfBirth': _dateOfBirth,
-      'address': _address,
-      'religion': _religion,
-      'schoolYear': _schoolYear,
+      'studentId': studentId,
+      'classId': classId,
+      'studentName': studentName,
+      'sex': sex,
+      'dateOfBirth': dateOfBirth,
+      'address': address,
+      'religion': religion,
+      'schoolYear': schoolYear,
     });
-
     var jsoN = json.decode(result.body);
     return (jsoN as Map<String, dynamic>)['message'];
   }
 
   static Future<String> addStudent(
-    String _studentId,
-    String _classId,
-    String _studentName,
-    String _sex,
-    String _dateOfBirth,
-    String _address,
-    String _religion,
-    String _schoolYear,
+    String studentId,
+    String classId,
+    String studentName,
+    String sex,
+    String dateOfBirth,
+    String address,
+    String religion,
+    String schoolYear,
   ) async {
     const String url = 'http://10.0.2.2/spp/class_data/student_add.php';
     var result = await http.post(url, body: {
-      'studentId': _studentId,
-      'classId': _classId,
-      'studentName': _studentName,
-      'sex': _sex,
-      'dateOfBirth': _dateOfBirth,
-      'address': _address,
-      'religion': _religion,
-      'schoolYear': _schoolYear,
+      'studentId': studentId,
+      'classId': classId,
+      'studentName': studentName,
+      'sex': sex,
+      'dateOfBirth': dateOfBirth,
+      'address': address,
+      'religion': religion,
+      'schoolYear': schoolYear,
     });
     var jsoN = json.decode(result.body);
     return (jsoN as Map<String, dynamic>)['message'];
