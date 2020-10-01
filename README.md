@@ -1,16 +1,10 @@
 # spp_app
 
-A new Flutter project.
+Aplikasi untuk pencatatan pembayaran SPP
 
-## Getting Started
+Spesifikasi :
+- database MYSQL
+- state management BLoC
 
-This project is a starting point for a Flutter application.
+<img src="https://user-images.githubusercontent.com/18584572/94507902-f9f6ec80-023a-11eb-8adc-669781e70158.png" height="400px" /> <img src="https://user-images.githubusercontent.com/18584572/94507909-ffeccd80-023a-11eb-8d1f-755b1d5ca6e4.png" height="400px" /> <img src="https://user-images.githubusercontent.com/18584572/94507912-01b69100-023b-11eb-9a08-b4fbcaf07562.png" height="400px" /> <img src="https://user-images.githubusercontent.com/18584572/94507916-02e7be00-023b-11eb-896e-7fa831f8476c.png" height="400px" />
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
