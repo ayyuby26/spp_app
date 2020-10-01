@@ -2,7 +2,6 @@
 
 Aplikasi untuk pencatatan pembayaran SPP
 
-Spesifikasi :
 - database MYSQL
 - state management BLoC
 
