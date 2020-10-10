@@ -21,7 +21,6 @@ class StudentLoaded extends StudentState {
 
 class StudentFailed extends StudentState {}
 
-
 /*
 
 
@@ -77,3 +76,19 @@ class StudentUpdateQueryError extends StudentState {}
 class StudentAddLoading extends StudentState {}
 
 class StudentUpdateServerError extends StudentState {}
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+

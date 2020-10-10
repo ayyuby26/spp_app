@@ -3,12 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spp_app/bloc/student/student_bloc.dart';
 import 'package:spp_app/ui/student_page/student_page_process.dart';
 
+import 'package:intl/date_symbol_data_local.dart';
+
 class StudentPage extends StatefulWidget {
   @override
   _StudentPageState createState() => _StudentPageState();
 }
 
 class _StudentPageState extends State<StudentPage> {
+  @override
+  void initState() {
+    initializeDateFormatting();
+    super.initState();
+  }
+
   final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "sK");
   @override
   Widget build(BuildContext context) {
